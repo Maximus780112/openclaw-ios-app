@@ -1,0 +1,23 @@
+services:
+  control-edge:
+    image: caddy:2.8
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - openclaw-edge
+
+networks:
+  openclaw-edge:
+    external: false
+
+volumes:
+  caddy-data:
+  caddy-config:

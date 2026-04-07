@@ -1,0 +1,7 @@
+// Copy this file to Environment.xcconfig and set local values.
+// Do not commit the copied file with real secrets.
+
+OPENCLAW_BOOTSTRAP_GATEWAY_URL = wss://mark-h370hd3.tail812275.ts.net
+OPENCLAW_BOOTSTRAP_GATEWAY_TOKEN = replace-me
+OPENCLAW_BOOTSTRAP_DISPLAY_NAME = My OpenClaw Gateway
+

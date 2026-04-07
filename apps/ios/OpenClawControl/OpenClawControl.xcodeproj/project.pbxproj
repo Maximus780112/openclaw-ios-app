@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		001A00010000000100000001 /* OpenClawControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00010000000100000001 /* OpenClawControlApp.swift */; };
+		001A00020000000100000001 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00020000000100000001 /* AppModels.swift */; };
+		001A00030000000100000001 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00030000000100000001 /* AppContainer.swift */; };
+		001A00040000000100000001 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00040000000100000001 /* KeychainService.swift */; };
+		001A00050000000100000001 /* SecureConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00050000000100000001 /* SecureConfigurationStore.swift */; };
+		001A00060000000100000001 /* LocalCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00060000000100000001 /* LocalCacheStore.swift */; };
+		001A00070000000100000001 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00070000000100000001 /* NetworkMonitor.swift */; };
+		001A00080000000100000001 /* PushNotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00080000000100000001 /* PushNotificationCoordinator.swift */; };
+		001A00090000000100000001 /* GatewayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B00090000000100000001 /* GatewayClient.swift */; };
+		001A000A0000000100000001 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B000A0000000100000001 /* AppViewModel.swift */; };
+		001A000B0000000100000001 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B000B0000000100000001 /* DesignSystem.swift */; };
+		001A000C0000000100000001 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B000C0000000100000001 /* SharedComponents.swift */; };
+		001A000D0000000100000001 /* ShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B000D0000000100000001 /* ShellView.swift */; };
+		001A000E0000000100000001 /* ChatHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B000E0000000100000001 /* ChatHomeView.swift */; };
+		001A000F0000000100000001 /* StatusAndListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B000F0000000100000001 /* StatusAndListsView.swift */; };
+		001A00100000000100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 001B00100000000100000001 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		001B00010000000100000001 /* OpenClawControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenClawControlApp.swift; sourceTree = "<group>"; };
+		001B00020000000100000001 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
+		001B00030000000100000001 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		001B00040000000100000001 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		001B00050000000100000001 /* SecureConfigurationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureConfigurationStore.swift; sourceTree = "<group>"; };
+		001B00060000000100000001 /* LocalCacheStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCacheStore.swift; sourceTree = "<group>"; };
+		001B00070000000100000001 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		001B00080000000100000001 /* PushNotificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationCoordinator.swift; sourceTree = "<group>"; };
+		001B00090000000100000001 /* GatewayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayClient.swift; sourceTree = "<group>"; };
+		001B000A0000000100000001 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		001B000B0000000100000001 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		001B000C0000000100000001 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
+		001B000D0000000100000001 /* ShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellView.swift; sourceTree = "<group>"; };
+		001B000E0000000100000001 /* ChatHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHomeView.swift; sourceTree = "<group>"; };
+		001B000F0000000100000001 /* StatusAndListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAndListsView.swift; sourceTree = "<group>"; };
+		001B00100000000100000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		001B00110000000100000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		001B00120000000100000001 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		001B00130000000100000001 /* OpenClawControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenClawControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		001C00010000000100000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		001D00010000000100000001 = {
+			isa = PBXGroup;
+			children = (
+				001D00020000000100000001 /* OpenClawControl */,
+				001D00090000000100000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		001D00020000000100000001 /* OpenClawControl */ = {
+			isa = PBXGroup;
+			children = (
+				001D00030000000100000001 /* App */,
+				001D00040000000100000001 /* Models */,
+				001D00050000000100000001 /* Services */,
+				001D00060000000100000001 /* ViewModels */,
+				001D00070000000100000001 /* Views */,
+				001D00080000000100000001 /* Resources */,
+				001D000A0000000100000001 /* Configurations */,
+			);
+			path = OpenClawControl;
+			sourceTree = "<group>";
+		};
+		001D00030000000100000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				001B00010000000100000001 /* OpenClawControlApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		001D00040000000100000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				001B00020000000100000001 /* AppModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		001D00050000000100000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				001B00030000000100000001 /* AppContainer.swift */,
+				001B00040000000100000001 /* KeychainService.swift */,
+				001B00050000000100000001 /* SecureConfigurationStore.swift */,
+				001B00060000000100000001 /* LocalCacheStore.swift */,
+				001B00070000000100000001 /* NetworkMonitor.swift */,
+				001B00080000000100000001 /* PushNotificationCoordinator.swift */,
+				001B00090000000100000001 /* GatewayClient.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		001D00060000000100000001 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				001B000A0000000100000001 /* AppViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		001D00070000000100000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				001D000B0000000100000001 /* Components */,
+				001B000B0000000100000001 /* DesignSystem.swift */,
+				001B000D0000000100000001 /* ShellView.swift */,
+				001B000E0000000100000001 /* ChatHomeView.swift */,
+				001B000F0000000100000001 /* StatusAndListsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		001D00080000000100000001 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				001B00100000000100000001 /* Assets.xcassets */,
+				001B00110000000100000001 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		001D00090000000100000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				001B00130000000100000001 /* OpenClawControl.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		001D000A0000000100000001 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				001B00120000000100000001 /* Base.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		001D000B0000000100000001 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				001B000C0000000100000001 /* SharedComponents.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		001E00010000000100000001 /* OpenClawControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 002100010000000100000001 /* Build configuration list for PBXNativeTarget "OpenClawControl" */;
+			buildPhases = (
+				001F00010000000100000001 /* Sources */,
+				001C00010000000100000001 /* Frameworks */,
+				002000010000000100000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenClawControl;
+			productName = OpenClawControl;
+			productReference = 001B00130000000100000001 /* OpenClawControl.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		001F10010000000100000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					001E00010000000100000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 002100020000000100000001 /* Build configuration list for PBXProject "OpenClawControl" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 001D00010000000100000001;
+			productRefGroup = 001D00090000000100000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				001E00010000000100000001 /* OpenClawControl */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		002000010000000100000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				001A00100000000100000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		001F00010000000100000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				001A00010000000100000001 /* OpenClawControlApp.swift in Sources */,
+				001A00020000000100000001 /* AppModels.swift in Sources */,
+				001A00030000000100000001 /* AppContainer.swift in Sources */,
+				001A00040000000100000001 /* KeychainService.swift in Sources */,
+				001A00050000000100000001 /* SecureConfigurationStore.swift in Sources */,
+				001A00060000000100000001 /* LocalCacheStore.swift in Sources */,
+				001A00070000000100000001 /* NetworkMonitor.swift in Sources */,
+				001A00080000000100000001 /* PushNotificationCoordinator.swift in Sources */,
+				001A00090000000100000001 /* GatewayClient.swift in Sources */,
+				001A000A0000000100000001 /* AppViewModel.swift in Sources */,
+				001A000B0000000100000001 /* DesignSystem.swift in Sources */,
+				001A000C0000000100000001 /* SharedComponents.swift in Sources */,
+				001A000D0000000100000001 /* ShellView.swift in Sources */,
+				001A000E0000000100000001 /* ChatHomeView.swift in Sources */,
+				001A000F0000000100000001 /* StatusAndListsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		002100030000000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 001B00120000000100000001 /* Base.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenClawControl/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.openclaw.control;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		002100040000000100000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 001B00120000000100000001 /* Base.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenClawControl/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.openclaw.control;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		002100050000000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+			};
+			name = Debug;
+		};
+		002100060000000100000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		002100010000000100000001 /* Build configuration list for PBXNativeTarget "OpenClawControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				002100030000000100000001 /* Debug */,
+				002100040000000100000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		002100020000000100000001 /* Build configuration list for PBXProject "OpenClawControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				002100050000000100000001 /* Debug */,
+				002100060000000100000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 001F10010000000100000001 /* Project object */;
+}
