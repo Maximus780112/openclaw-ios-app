@@ -1,0 +1,174 @@
+name: iOS OpenClawControl Build
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "apps/ios/OpenClawControl/**"
+      - ".github/workflows/ios-openclawcontrol-build.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/ios/OpenClawControl/**"
+      - ".github/workflows/ios-openclawcontrol-build.yml"
+
+concurrency:
+  group: ios-openclawcontrol-build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      APP_ROOT: apps/ios/OpenClawControl
+      ARTIFACT_ROOT: ${{ github.workspace }}/.artifacts/ios-openclawcontrol-build
+      BUILD_LOG_PATH: ${{ github.workspace }}/.artifacts/ios-openclawcontrol-build/xcodebuild.log
+      DERIVED_DATA_PATH: ${{ github.workspace }}/.artifacts/ios-openclawcontrol-build/DerivedData
+      RESULT_BUNDLE_PATH: ${{ github.workspace }}/.artifacts/ios-openclawcontrol-build/OpenClawControl.xcresult
+      PROJECT_LIST_PATH: ${{ github.workspace }}/.artifacts/ios-openclawcontrol-build/detected-projects.txt
+      SCHEME_LIST_PATH: ${{ github.workspace }}/.artifacts/ios-openclawcontrol-build/detected-schemes.txt
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          submodules: false
+
+      - name: Show Xcode toolchain
+        run: |
+          set -euo pipefail
+          sw_vers
+          xcodebuild -version
+          swift --version
+
+      - name: Detect Xcode project and shared scheme
+        id: detect
+        run: |
+          set -euo pipefail
+          mkdir -p "$ARTIFACT_ROOT"
+          mkdir -p "$DERIVED_DATA_PATH"
+          : > "$BUILD_LOG_PATH"
+
+          mapfile -t projects < <(find "$APP_ROOT" -maxdepth 3 -type d -name '*.xcodeproj' | sort)
+
+          if [[ ${#projects[@]} -eq 0 ]]; then
+            echo "No .xcodeproj found under $APP_ROOT." | tee -a "$BUILD_LOG_PATH"
+            echo "::error title=No Xcode project found::Expected one .xcodeproj somewhere under $APP_ROOT."
+            exit 1
+          fi
+
+          if [[ ${#projects[@]} -gt 1 ]]; then
+            printf '%s\n' "${projects[@]}" | tee "$PROJECT_LIST_PATH"
+            printf '%s\n' "${projects[@]}" >> "$BUILD_LOG_PATH"
+            echo "::error title=Multiple Xcode projects found::Found ${#projects[@]} .xcodeproj directories under $APP_ROOT. Narrow the workflow detection or remove the ambiguity."
+            exit 1
+          fi
+
+          project_path="${projects[0]}"
+          project_name="$(basename "$project_path" .xcodeproj)"
+          printf '%s\n' "$project_path" | tee "$PROJECT_LIST_PATH"
+
+          list_json="$(xcodebuild -list -json -project "$project_path")"
+
+          scheme="$(PROJECT_NAME="$project_name" LIST_JSON="$list_json" python3 - <<'PY'
+import json
+import os
+import sys
+
+payload = json.loads(os.environ["LIST_JSON"])
+project = payload.get("project", {})
+schemes = project.get("schemes") or []
+
+if not schemes:
+    print("No shared schemes found in project.", file=sys.stderr)
+    sys.exit(1)
+
+project_name = os.environ["PROJECT_NAME"]
+preferred = next((scheme for scheme in schemes if scheme == project_name), schemes[0])
+print(preferred)
+PY
+)"
+
+          LIST_JSON="$list_json" python3 - <<'PY' > "$SCHEME_LIST_PATH"
+import json
+import os
+
+payload = json.loads(os.environ["LIST_JSON"])
+for scheme in payload.get("project", {}).get("schemes") or []:
+    print(scheme)
+PY
+
+          {
+            echo "project_path=$project_path"
+            echo "scheme=$scheme"
+          } >> "$GITHUB_OUTPUT"
+
+          {
+            echo "Detected project: $project_path"
+            echo "Detected scheme: $scheme"
+          } | tee -a "$BUILD_LOG_PATH"
+
+      - name: Build for iOS Simulator
+        run: |
+          set -euo pipefail
+          rm -rf "$DERIVED_DATA_PATH" "$RESULT_BUNDLE_PATH"
+          mkdir -p "$ARTIFACT_ROOT"
+
+          {
+            echo "Project: ${{ steps.detect.outputs.project_path }}"
+            echo "Scheme: ${{ steps.detect.outputs.scheme }}"
+            echo "Runner: $(sw_vers -productVersion)"
+            echo "Xcode: $(xcodebuild -version | tr '\n' ' ' | sed 's/  */ /g')"
+            echo
+          } | tee "$BUILD_LOG_PATH"
+
+          set -o pipefail
+          xcodebuild \
+            -project "${{ steps.detect.outputs.project_path }}" \
+            -scheme "${{ steps.detect.outputs.scheme }}" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            -derivedDataPath "$DERIVED_DATA_PATH" \
+            -resultBundlePath "$RESULT_BUNDLE_PATH" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build 2>&1 | tee -a "$BUILD_LOG_PATH"
+
+      - name: Summarize build failure
+        if: failure()
+        run: |
+          set -euo pipefail
+          echo "Readable error summary:"
+          summary="$(grep -E '(^|\s)(error:|fatal error:)' "$BUILD_LOG_PATH" | tail -n 40 || true)"
+          if [[ -n "$summary" ]]; then
+            printf '%s\n' "$summary"
+          else
+            tail -n 120 "$BUILD_LOG_PATH" || true
+          fi
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ios-openclawcontrol-build-logs
+          if-no-files-found: error
+          path: |
+            ${{ env.BUILD_LOG_PATH }}
+            ${{ env.RESULT_BUNDLE_PATH }}
+            ${{ env.PROJECT_LIST_PATH }}
+            ${{ env.SCHEME_LIST_PATH }}
+
+      - name: Upload derived data
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ios-openclawcontrol-derived-data
+          if-no-files-found: warn
+          path: ${{ env.DERIVED_DATA_PATH }}
