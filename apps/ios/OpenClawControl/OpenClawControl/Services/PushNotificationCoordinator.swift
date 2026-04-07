@@ -1,6 +1,7 @@
-#if canImport(UIKit)
 import Foundation
+#if canImport(UIKit)
 import UIKit
+import UserNotifications
 
 @MainActor
 final class PushNotificationCoordinator: NSObject, UIApplicationDelegate, ObservableObject {
