@@ -1,6 +1,7 @@
+import Foundation
+
 @MainActor
 final class SecureConfigurationStore {
-
     private enum Keys {
         static let profile = "connection.profile"
     }
@@ -21,5 +22,18 @@ final class SecureConfigurationStore {
             return repaired(profile)
         }
         return nil
+    }
+
+    func saveProfile(_ profile: ConnectionProfile) throws {
+        let data = try encoder.encode(profile)
+        try keychain.save(data, account: Keys.profile)
+    }
+
+    func clearProfile() throws {
+        try keychain.delete(account: Keys.profile)
+    }
+
+    private func repaired(_ profile: ConnectionProfile) -> ConnectionProfile {
+        profile
     }
 }
