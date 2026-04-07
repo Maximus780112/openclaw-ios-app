@@ -322,17 +322,14 @@ struct SettingsView: View {
         .foregroundStyle(ControlTheme.textSecondary)
       if secure {
         SecureField(title, text: text)
-          .textInputAutocapitalization(.never)
-          .autocorrectionDisabled()
+          .controlTextInputTraits()
           .foregroundStyle(ControlTheme.textPrimary)
       } else {
         TextField(title, text: text)
-          .textInputAutocapitalization(.never)
-          .autocorrectionDisabled()
+          .controlTextInputTraits()
           .foregroundStyle(ControlTheme.textPrimary)
       }
       Divider().overlay(ControlTheme.border)
     }
   }
 }
-

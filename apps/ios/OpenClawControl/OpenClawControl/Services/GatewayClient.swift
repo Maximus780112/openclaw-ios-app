@@ -1,12 +1,12 @@
 import Foundation
 
 private final class GatewaySocketDelegate: NSObject, URLSessionWebSocketDelegate {
-  let didOpen: @Sendable () -> Void
-  let didClose: @Sendable (String) -> Void
+  let didOpen: () -> Void
+  let didClose: (String) -> Void
 
   init(
-    didOpen: @escaping @Sendable () -> Void,
-    didClose: @escaping @Sendable (String) -> Void
+    didOpen: @escaping () -> Void,
+    didClose: @escaping (String) -> Void
   ) {
     self.didOpen = didOpen
     self.didClose = didClose
@@ -15,7 +15,7 @@ private final class GatewaySocketDelegate: NSObject, URLSessionWebSocketDelegate
   func urlSession(
     _ session: URLSession,
     webSocketTask: URLSessionWebSocketTask,
-    didOpenWithProtocol protocol: String?
+    didOpenWithProtocol `protocol`: String?
   ) {
     didOpen()
   }
@@ -32,8 +32,8 @@ private final class GatewaySocketDelegate: NSObject, URLSessionWebSocketDelegate
 }
 
 actor GatewayClient {
-  typealias EventHandler = @Sendable (GatewayEvent) -> Void
-  typealias DisconnectHandler = @Sendable (String) -> Void
+  typealias EventHandler = (GatewayEvent) -> Void
+  typealias DisconnectHandler = (String) -> Void
 
   private var session: URLSession?
   private var socket: URLSessionWebSocketTask?

@@ -31,5 +31,15 @@ extension View {
   func controlCard() -> some View {
     modifier(ControlCardModifier())
   }
-}
 
+  @ViewBuilder
+  func controlTextInputTraits() -> some View {
+#if os(iOS) || os(tvOS) || os(visionOS)
+    self
+      .textInputAutocapitalization(.never)
+      .autocorrectionDisabled()
+#else
+    self
+#endif
+  }
+}

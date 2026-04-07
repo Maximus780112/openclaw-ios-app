@@ -1,11 +1,11 @@
 import Foundation
 import Network
 
-final class NetworkMonitor {
+final class NetworkMonitor: @unchecked Sendable {
   private let monitor = NWPathMonitor()
   private let queue = DispatchQueue(label: "ai.openclaw.control.network")
 
-  var onPathChange: (@Sendable (Bool) -> Void)?
+  var onPathChange: ((Bool) -> Void)?
 
   init() {
     monitor.pathUpdateHandler = { [weak self] path in
@@ -18,4 +18,3 @@ final class NetworkMonitor {
     monitor.cancel()
   }
 }
-

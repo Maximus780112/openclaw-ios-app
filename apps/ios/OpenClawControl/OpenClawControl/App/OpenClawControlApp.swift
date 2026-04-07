@@ -2,7 +2,9 @@ import SwiftUI
 
 @main
 struct OpenClawControlApp: App {
+#if canImport(UIKit)
   @UIApplicationDelegateAdaptor(PushNotificationCoordinator.self) private var pushCoordinator
+#endif
   @Environment(\.scenePhase) private var scenePhase
   @StateObject private var viewModel = AppViewModel(container: AppContainer())
 
@@ -19,4 +21,3 @@ struct OpenClawControlApp: App {
     }
   }
 }
-

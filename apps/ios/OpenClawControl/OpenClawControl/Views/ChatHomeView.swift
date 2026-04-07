@@ -68,8 +68,7 @@ struct ChatHomeView: View {
         Image(systemName: "magnifyingglass")
           .foregroundStyle(ControlTheme.textSecondary)
         TextField("Search messages", text: $viewModel.chatSearchText)
-          .textInputAutocapitalization(.never)
-          .autocorrectionDisabled()
+          .controlTextInputTraits()
           .foregroundStyle(ControlTheme.textPrimary)
         if !viewModel.chatSearchText.isEmpty {
           Button("Clear") {
@@ -180,4 +179,3 @@ struct ChatHomeView: View {
     .background(ControlTheme.background.opacity(0.98))
   }
 }
-

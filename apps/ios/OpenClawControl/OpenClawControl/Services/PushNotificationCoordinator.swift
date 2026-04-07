@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import Foundation
 import UIKit
 
@@ -20,4 +21,4 @@ final class PushNotificationCoordinator: NSObject, UIApplicationDelegate, Observ
     print("Push registration not enabled: \(error.localizedDescription)")
   }
 }
-
+#endif

@@ -2,10 +2,16 @@ import SwiftUI
 
 struct ShellView: View {
   @ObservedObject var viewModel: AppViewModel
+#if os(iOS) || os(tvOS) || os(visionOS)
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+#endif
 
   private var showsPersistentSidebar: Bool {
+#if os(iOS) || os(tvOS) || os(visionOS)
     horizontalSizeClass == .regular
+#else
+    true
+#endif
   }
 
   var body: some View {
@@ -115,4 +121,3 @@ struct ShellView: View {
     }
   }
 }
-

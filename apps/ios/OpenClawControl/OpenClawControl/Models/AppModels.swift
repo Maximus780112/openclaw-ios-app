@@ -220,3 +220,7 @@ struct GatewayEvent {
 struct GatewayDisconnectReason: Error {
   let message: String
 }
+
+extension GatewayHello: @unchecked Sendable {}
+extension GatewayEvent: @unchecked Sendable {}
+extension GatewayDisconnectReason: Sendable {}
