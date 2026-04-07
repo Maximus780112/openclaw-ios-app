@@ -13,9 +13,6 @@ on:
       - "apps/ios/OpenClawControl/**"
       - ".github/workflows/ios-openclawcontrol-build.yml"
 
-concurrency:
-  group: ios-openclawcontrol-build-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   build:
