@@ -1,4 +1,4 @@
-name: iOS Build
+name: Apple Build
 
 on:
   workflow_dispatch:
@@ -15,12 +15,12 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
-      - name: Build OpenClawControl for iOS Simulator
+      - name: Build OpenClawControl
         run: |
           xcodebuild \
             -project apps/ios/OpenClawControl/OpenClawControl.xcodeproj \
             -scheme OpenClawControl \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination 'platform=macOS' \
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
             build
