@@ -1,4 +1,6 @@
+#if canImport(Charts)
 import Charts
+#endif
 import SwiftUI
 
 struct ServerStatusView: View {
@@ -157,14 +159,7 @@ struct UsageView: View {
               .font(.subheadline)
               .foregroundStyle(ControlTheme.textSecondary)
           } else {
-            Chart(viewModel.usage.points) { point in
-              BarMark(
-                x: .value("Day", point.dayLabel),
-                y: .value("Requests", point.requests)
-              )
-              .foregroundStyle(ControlTheme.accent)
-            }
-            .frame(height: 220)
+            usageTrend
           }
         }
         .controlCard()
@@ -189,6 +184,33 @@ struct UsageView: View {
         .foregroundStyle(ControlTheme.textPrimary)
       Spacer()
     }
+  }
+
+  @ViewBuilder
+  private var usageTrend: some View {
+#if canImport(Charts)
+    Chart(viewModel.usage.points) { point in
+      BarMark(
+        x: .value("Day", point.dayLabel),
+        y: .value("Requests", point.requests)
+      )
+      .foregroundStyle(ControlTheme.accent)
+    }
+    .frame(height: 220)
+#else
+    VStack(alignment: .leading, spacing: 10) {
+      ForEach(viewModel.usage.points) { point in
+        HStack {
+          Text(point.dayLabel)
+            .foregroundStyle(ControlTheme.textPrimary)
+          Spacer()
+          Text("\(point.requests)")
+            .foregroundStyle(ControlTheme.textSecondary)
+        }
+        .font(.subheadline)
+      }
+    }
+#endif
   }
 }
 
