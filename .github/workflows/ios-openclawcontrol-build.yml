@@ -76,32 +76,32 @@ jobs:
           list_json="$(xcodebuild -list -json -project "$project_path")"
 
           scheme="$(PROJECT_NAME="$project_name" LIST_JSON="$list_json" python3 - <<'PY'
-import json
-import os
-import sys
+          import json
+          import os
+          import sys
 
-payload = json.loads(os.environ["LIST_JSON"])
-project = payload.get("project", {})
-schemes = project.get("schemes") or []
+          payload = json.loads(os.environ["LIST_JSON"])
+          project = payload.get("project", {})
+          schemes = project.get("schemes") or []
 
-if not schemes:
-    print("No shared schemes found in project.", file=sys.stderr)
-    sys.exit(1)
+          if not schemes:
+              print("No shared schemes found in project.", file=sys.stderr)
+              sys.exit(1)
 
-project_name = os.environ["PROJECT_NAME"]
-preferred = next((scheme for scheme in schemes if scheme == project_name), schemes[0])
-print(preferred)
-PY
-)"
+          project_name = os.environ["PROJECT_NAME"]
+          preferred = next((scheme for scheme in schemes if scheme == project_name), schemes[0])
+          print(preferred)
+          PY
+          )"
 
           LIST_JSON="$list_json" python3 - <<'PY' > "$SCHEME_LIST_PATH"
-import json
-import os
+          import json
+          import os
 
-payload = json.loads(os.environ["LIST_JSON"])
-for scheme in payload.get("project", {}).get("schemes") or []:
-    print(scheme)
-PY
+          payload = json.loads(os.environ["LIST_JSON"])
+          for scheme in payload.get("project", {}).get("schemes") or []:
+              print(scheme)
+          PY
 
           {
             echo "project_path=$project_path"
