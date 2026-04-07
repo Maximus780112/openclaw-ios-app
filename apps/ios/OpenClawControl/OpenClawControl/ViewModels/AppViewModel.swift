@@ -97,7 +97,7 @@ final class AppViewModel: ObservableObject {
   }
 
   func saveSettings() async {
-    configurationStore.saveProfile(profile)
+    try? configurationStore.saveProfile(profile)
     await persistCache()
     await connect(reason: connectionPhase == .connected ? .reconnecting : .connecting)
   }
@@ -154,7 +154,7 @@ final class AppViewModel: ObservableObject {
 
   func selectSession(_ session: SessionSummary) async {
     profile.currentSessionKey = session.key
-    configurationStore.saveProfile(profile)
+    try? configurationStore.saveProfile(profile)
     messages = cachedMessagesBySession[session.key] ?? []
     await loadChatHistory()
   }
@@ -187,7 +187,7 @@ final class AppViewModel: ObservableObject {
       connectionPhase = .connected
       connectionDetail = "Connected as \(profile.displayName)"
       apply(hello: hello)
-      configurationStore.saveProfile(profile)
+      try? configurationStore.saveProfile(profile)
       await refreshDashboard()
     } catch {
       handleDisconnect(reason: error.localizedDescription)
